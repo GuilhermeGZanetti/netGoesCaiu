@@ -1,0 +1,23 @@
+{
+  "name": "netgoescaiu",
+  "version": "1.0.0",
+  "description": "Bot do twitter",
+  "main": "index.js",
+  "dependencies": {
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeGZanetti/netGoesCaiu.git"
+  },
+  "author": "Goes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuilhermeGZanetti/netGoesCaiu/issues"
+  },
+  "homepage": "https://github.com/GuilhermeGZanetti/netGoesCaiu#readme"
+}

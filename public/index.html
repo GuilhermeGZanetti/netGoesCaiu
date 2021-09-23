@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      body { margin: 0; padding-bottom: 3rem; font-family: Helvetica, Arial, sans-serif; }
+
+      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #text { border: none; padding: 10rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <h1 id="text">Verificador da net Goes</h1>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        var socket = io();
+        setInterval(() => emiteMensagem(), 1000);
+
+        function emiteMensagem() {
+            socket.emit('messageFromClient', "online");
+        }
+    </script>
+  </body>
+</html>

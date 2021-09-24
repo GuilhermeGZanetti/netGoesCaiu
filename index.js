@@ -41,16 +41,9 @@ io.on("connection",(client)=>{
         console.log("Disconnected");
         if(!safelyClosed){
             let date_ob = new Date();
-            // current date
-            let date = ("0" + date_ob.getDate()).slice(-2);
-            let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-            let year = date_ob.getFullYear();
-            let hours = ("0" + date_ob.getHours()).slice(-2);
-            let minutes = ("0" + date_ob.getMinutes()).slice(-2);
-            let seconds = ("0" + date_ob.getSeconds()).slice(-2);
             // prints date & time in YYYY-MM-DD HH:MM:SS format
-            console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
-            userClient.v1.tweet('A internet do Goes Caiu...     ' + year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
+            console.log(date_ob.toLocaleString('en-GB',  { timeZone: 'America/Sao_Paulo' }));
+            userClient.v1.tweet('A internet do Goes Caiu...                    ' + date_ob.toLocaleString('en-GB',  { timeZone: 'America/Sao_Paulo' }));
     
             console.log('Internet caiu!');
         }

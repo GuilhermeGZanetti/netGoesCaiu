@@ -18,7 +18,7 @@ const userClient = new TwitterApi({
 
 const app=express();
 const server=http.createServer(app);
-const io=socketio(server);
+const io= socketio(server);
 
 
 const port=process.env.PORT || 3000;
@@ -27,19 +27,19 @@ const publicDirectoryPath=path.join(__dirname,"/public");
 app.use(express.static(publicDirectoryPath));
 
 
-var lastMessage=0;
-var currentMessage=0;
-const timeTolerance = 5000;
-
 
 io.on("connection",(client)=>{
-    Date.
-    lastMessage = Date.now();
-    console.log('New websocket connection ' + lastMessage);
+    var safelyClosed = false;
+    console.log('New websocket connection ');
+
     client.on('messageFromClient', msg => {
-        currentMessage = Date.now();
-        if(currentMessage - lastMessage > timeTolerance){
-            console.log("Atraso!! " + currentMessage);
+        console.log(msg);
+        safelyClosed = true;
+    });
+    
+    client.on('disconnect', () => {
+        console.log("Disconnected");
+        if(!safelyClosed){
             let date_ob = new Date();
             // current date
             let date = ("0" + date_ob.getDate()).slice(-2);
@@ -51,13 +51,10 @@ io.on("connection",(client)=>{
             // prints date & time in YYYY-MM-DD HH:MM:SS format
             console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
             //userClient.v1.tweet('A internet do Goes Caiu...     ' + year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
+    
+            console.log('Internet caiu!');
         }
-        lastMessage = currentMessage;
-        console.log(msg + " " + currentMessage);
     });
-    client.on('disconnect', () => {
-    console.log('New websocket disconnected');
-});
 })
 
 

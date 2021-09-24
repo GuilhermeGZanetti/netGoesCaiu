@@ -12,15 +12,24 @@
   <body>
     <ul id="messages"></ul>
     <h1 id="text">Verificador da net Goes</h1>
+    <form>
+        <textarea placeholder = "Trigger an 
+         interaction by writing something here">
+        </textarea>
+    </form>
     <script src="/socket.io/socket.io.js"></script>
 
-    <script>
-        var socket = io();
-        setInterval(() => emiteMensagem(), 1000);
+    <script type="text/javascript">
 
-        function emiteMensagem() {
-            socket.emit('messageFromClient', "online");
-        }
+        const socket = io("", {
+            closeOnBeforeunload: false
+        });
+
+    
+        window.onbeforeunload = function (e) {     
+            socket.emit('messageFromClient', "closingbrowser");
+            console.log("Sent message");
+        };
     </script>
   </body>
 </html>

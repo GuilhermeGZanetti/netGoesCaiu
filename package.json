@@ -10,6 +10,9 @@
     "socket.io": "^4.2.0",
     "twitter-api-v2": "^1.5.2"
   },
+  "engines": {
+    "node": "14.15.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "node index.js",

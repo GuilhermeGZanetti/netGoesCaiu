@@ -7,13 +7,13 @@ const express=require('express');
 const socketio=require('socket.io');
 const { TwitterApi } = require('twitter-api-v2');
 
-// OAuth 1.0a (User context)
-const userClient = new TwitterApi({
-    appKey: process.env.API_KEY,
-    appSecret: process.env.API_KEY_SECRET,
-    accessToken: process.env.ACCESS_TOKEN,
-    accessSecret: process.env.ACCESS_TOKEN_SECRET,
-});
+// // OAuth 1.0a (User context)
+// const userClient = new TwitterApi({
+//     appKey: process.env.API_KEY,
+//     appSecret: process.env.API_KEY_SECRET,
+//     accessToken: process.env.ACCESS_TOKEN,
+//     accessSecret: process.env.ACCESS_TOKEN_SECRET,
+// });
 
 
 const app=express();

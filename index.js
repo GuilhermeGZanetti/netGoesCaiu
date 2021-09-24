@@ -7,13 +7,13 @@ const express=require('express');
 const socketio=require('socket.io');
 const { TwitterApi } = require('twitter-api-v2');
 
-// // OAuth 1.0a (User context)
-// const userClient = new TwitterApi({
-//     appKey: process.env.API_KEY,
-//     appSecret: process.env.API_KEY_SECRET,
-//     accessToken: process.env.ACCESS_TOKEN,
-//     accessSecret: process.env.ACCESS_TOKEN_SECRET,
-// });
+// OAuth 1.0a (User context)
+const userClient = new TwitterApi({
+    appKey: process.env.API_KEY,
+    appSecret: process.env.API_KEY_SECRET,
+    accessToken: process.env.ACCESS_TOKEN,
+    accessSecret: process.env.ACCESS_TOKEN_SECRET,
+});
 
 
 const app=express();
@@ -50,7 +50,7 @@ io.on("connection",(client)=>{
             let seconds = ("0" + date_ob.getSeconds()).slice(-2);
             // prints date & time in YYYY-MM-DD HH:MM:SS format
             console.log(year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
-            //userClient.v1.tweet('A internet do Goes Caiu...     ' + year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
+            userClient.v1.tweet('A internet do Goes Caiu...     ' + year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds);
     
             console.log('Internet caiu!');
         }

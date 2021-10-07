@@ -26,7 +26,7 @@ const publicDirectoryPath=path.join(__dirname,"/public");
 
 app.use(express.static(publicDirectoryPath));
 
-
+var lastFall = 0;
 
 io.on("connection",(client)=>{
     var safelyClosed = false;
@@ -41,11 +41,14 @@ io.on("connection",(client)=>{
         console.log("Disconnected");
         if(!safelyClosed){
             let date_ob = new Date();
-            // prints date & time in YYYY-MM-DD HH:MM:SS format
-            console.log(date_ob.toLocaleString('en-GB',  { timeZone: 'America/Sao_Paulo' }));
-            userClient.v1.tweet('A internet do Goes Caiu...                    ' + date_ob.toLocaleString('en-GB',  { timeZone: 'America/Sao_Paulo' }));
-    
-            console.log('Internet caiu!');
+            if(date_ob.getTime() - lastFall > 30000){ //30 segundos
+                lastFall = date_ob.getTime();
+                // prints date & time in YYYY-MM-DD HH:MM:SS format
+                console.log(date_ob.toLocaleString('en-GB',  { timeZone: 'America/Sao_Paulo' }));
+                userClient.v1.tweet('A internet do Goes Caiu...                    ' + date_ob.toLocaleString('en-GB',  { timeZone: 'America/Sao_Paulo' }));
+        
+                console.log('Internet caiu!');
+            }
         }
     });
 })
